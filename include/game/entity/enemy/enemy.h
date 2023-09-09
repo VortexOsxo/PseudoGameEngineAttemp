@@ -6,6 +6,7 @@
 class FightingComponent;
 class BaseMovementComponent;
 class AIController;
+class EntityRenderingComponent;
 
 class Enemy : public LivingEntity, public Ownee
 {
@@ -23,4 +24,5 @@ private:
     FightingComponent* fightingComponent = nullptr;
     BaseMovementComponent* movementComponent = nullptr;
     AIController* AIcontroller = nullptr;
+    EntityRenderingComponent* renderingComponent = nullptr;
 };

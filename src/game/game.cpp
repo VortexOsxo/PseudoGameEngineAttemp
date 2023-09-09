@@ -1,6 +1,8 @@
 #include <game/game.h>
 #include <Utils/Window.h>
+
 #include <game/tick_system/tick_manager.h>
+#include <game/rendering/rendering_system.h>
 
 #include <iostream>
 
@@ -11,8 +13,6 @@ Game::Game()
     map = std::make_unique<Map>(750.f);
     projectileOwner = std::make_unique<ProjectileOwner>(this);
     enemyOwner = std::make_unique<EnemyOwner>();
-
-    drawer = std::make_unique<GameDrawer>(window);
 }
 
 void Game::SpawnPlayer()
@@ -83,25 +83,12 @@ bool Game::HandleEventIntern(float time, const sf::Event &event)
 
 void Game::Draw()
 {
+    static RenderingSystem* renderingSystem = RenderingSystem::GetInstance();
+
     window->clear();
 
-    drawer->SetRelativePosition(player->GetPosition());
-
-    drawer->DrawEntity(player.get());
-
-    for (auto& projectile : projectileOwner->GetOwnees())
-    {
-        drawer->DrawEntity(projectile.get());
-    }
-
-    for (auto& enemy : enemyOwner->GetOwnees())
-    {
-        drawer->DrawEntity(enemy.get());
-    }
-
-    drawer->DrawMap(map.get());
-
-    drawer->DrawHealthBar(player->GetHealth(), player->GetMaxHealth());
+    renderingSystem->SetRelativePosition(player->GetPosition());
+    renderingSystem->Render();
 
     window->display();
 }

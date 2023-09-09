@@ -15,13 +15,10 @@ public:
     void SetRelativePosition(const Vector2D& newRelativePosition);
 
     void DrawEntity(Entity* entity);
-    void DrawPlayer(Entity* player);
     void DrawHealthBar(float currentHealth, float maxHealth);
     void DrawMap(Map* map);
 
 private:
-    Vector2D CalculateRelativeDrawPosition();
-
     sf::RenderWindow* window;
     Vector2D relativePosition = Vector2D::ZeroVector;
 

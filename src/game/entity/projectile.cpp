@@ -1,5 +1,8 @@
 #include <game/entity/projectile.h>
+
 #include <game/movement_component/base_movement_component.h>
+#include <game/rendering/rendering_components/entity_rendering_component.h>
+
 #include <game/entity/living_entity.h>
 #include "Utils/Vector2D.h"
 
@@ -12,11 +15,13 @@ Projectile::Projectile(Vector2D InPosition, int InRayon, Vector2D InDirection, T
     : Entity(InPosition, InRayon), target(inTargetType), Direction(InDirection), damage(BASE_DAMAGE)
 {
     MovementComponent = new BaseMovementComponent(this, BASE_SPEED);
+    renderingComponent = new EntityRenderingComponent(this);
 }
 
 Projectile::~Projectile()
 {
     delete MovementComponent;
+    delete renderingComponent;
 }
 
 void Projectile::Tick(float time)

@@ -1,10 +1,18 @@
 #include <game/map/map.h>
 
 #include <game/entity/entity.h>
+#include <game/rendering/rendering_components/map_rendering_component.h>
 
 Map::Map(float inRayon)
     : rayon(inRayon)
-{}
+{
+    renderingComponent = new MapRenderingComponent(this);
+}
+
+Map::~Map()
+{
+    delete renderingComponent;
+}
 
 float Map::GetRayon() const 
 {

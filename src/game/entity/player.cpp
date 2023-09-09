@@ -21,6 +21,7 @@ Player::Player(Vector2D position, int rayon)
 {   
     movementComponent = std::make_unique<DashMovementComponent>(this, BASE_SPEED, DASH_CD, DASH_TIME, DASH_BONUS_SPEED);
     fightingComponent = std::make_unique<FightingComponent>();
+    renderingComponent = std::make_unique<PlayerRenderingComponent>(this);
     
     WeaponBuilder builder;
     builder.SetProjectileTarget(TargetingType::Enemy);

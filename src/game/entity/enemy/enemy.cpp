@@ -8,6 +8,7 @@
 #include <game/combat/fighting_component.h>
 #include <game/movement_component/base_movement_component.h>
 #include <game/ai/ai_controller.h>
+#include <game/rendering/rendering_components/entity_rendering_component.h>
 
 #include <iostream>
 
@@ -26,6 +27,7 @@ Enemy::Enemy(Vector2D position, int rayon)
     
     movementComponent = new BaseMovementComponent(this, BASE_SPEED);
     AIcontroller = new AIController(this);
+    renderingComponent = new EntityRenderingComponent(this);
 }
 
 Enemy::~Enemy()
@@ -33,6 +35,7 @@ Enemy::~Enemy()
     delete fightingComponent;
     delete movementComponent;
     delete AIcontroller;
+    delete renderingComponent;
 }
 
 void Enemy::TakeDamage(float damage)

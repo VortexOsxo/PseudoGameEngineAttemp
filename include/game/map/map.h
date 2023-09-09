@@ -7,7 +7,7 @@ class Map
 {
 public:
     Map(float rayon);
-    ~Map() = default;
+    ~Map();
 
     float GetRayon() const;
     bool IsInside(class Entity* entity) const;
@@ -18,4 +18,6 @@ public:
 private:
     RectangleObstacle obstacle = RectangleObstacle(Vector2D(150.f, 150.f), Vector2D(200.f,200.f));
     float rayon = 0;
+
+    class MapRenderingComponent* renderingComponent = nullptr;
 };

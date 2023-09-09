@@ -4,7 +4,6 @@
 #include <game/map/map.h>
 #include <game/owner/enemy_owner.h>
 #include <game/owner/projectile_owner.h>
-#include <game/drawer/game_drawer.h>
 
 #include <context.h>
 #include <memory>
@@ -39,11 +38,7 @@ private:
     std::unique_ptr<Player> player = nullptr;
     std::unique_ptr<Map> map = nullptr;
     std::unique_ptr<EnemyOwner> enemyOwner = nullptr;
-    std::unique_ptr<ProjectileOwner> projectileOwner = nullptr;
-
-    int* value = nullptr;
-
-    std::unique_ptr<GameDrawer> drawer = nullptr;    
+    std::unique_ptr<ProjectileOwner> projectileOwner = nullptr;  
 
 private:
     static Game* instance;
