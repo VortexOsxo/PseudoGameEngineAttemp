@@ -9,6 +9,10 @@ public:
     virtual ~EnemyOwner();
     
     virtual void Tick(float time);
+
+    void RequestSpawn(const class SpawnOrder& spawnOrder);
+
 private:
-    class EnemySpawner* enemySpawner;
+    class EnemySpawner* enemySpawner = nullptr;
+    class EnemyBuildDirector* enemyBuildDirector = nullptr;
 };

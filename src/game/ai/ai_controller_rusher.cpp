@@ -1,4 +1,4 @@
-#include "game/ai/ai_controller.h"
+#include "game/ai/ai_controller_rusher.h"
 
 #include "game/game.h"
 
@@ -12,11 +12,11 @@
 
 #include <iostream>
 
-AIController::AIController(Enemy* InEnemy)
-    : enemy(InEnemy)
+AIControllerRusher::AIControllerRusher(Enemy* InEnemy)
+    : AIControllerBase(InEnemy)
 {}
 
-void AIController::Tick(float time) 
+void AIControllerRusher::Tick(float time) 
 {
     Player* target = Game::GetInstance()->GetPlayer();
     Map* map = Game::GetInstance()->GetMap();
@@ -27,23 +27,18 @@ void AIController::Tick(float time)
     Vector2D direction = playerPos - thisPos;
     float distance = direction.Length();
 
-    if (distance < 400.f)
+    if (distance > 75.f)
     {
         Vector2D initialPos = enemy->GetPosition();
-        enemy->movementComponent->Move(direction * -1.f, time);
+        enemy->GetMovementComponent()->Move(direction * 1.f, time);
         if(!map->IsInside(enemy))
         {
             enemy->SetPosition(initialPos);
         }
     }
 
-    else if (distance > 600.f)
-    {
-        enemy->movementComponent->Move(direction, time);
-    }
-    
     else 
     {
-        enemy->fightingComponent->WeaponAttack();
+        enemy->GetFightingComponent()->WeaponAttack();
     }
 }

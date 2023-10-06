@@ -5,24 +5,26 @@
 
 class FightingComponent;
 class BaseMovementComponent;
-class AIController;
+class AIControllerBase;
 class EntityRenderingComponent;
 
 class Enemy : public LivingEntity, public Ownee
 {
-friend class AIController;
-
 public:
     Enemy(Vector2D inPosition, int inRayon);
     virtual ~Enemy();
 
     virtual void TakeDamage(float damage) override;
 
-private:
-    bool bIsSetup = false;
+    void SetFightingComponent(FightingComponent* inFightingComponent);
+    void SetAIController(AIControllerBase* AIController);
 
+    inline FightingComponent* GetFightingComponent() const { return fightingComponent; }
+    inline BaseMovementComponent* GetMovementComponent() const { return movementComponent; }
+
+private:
     FightingComponent* fightingComponent = nullptr;
     BaseMovementComponent* movementComponent = nullptr;
-    AIController* AIcontroller = nullptr;
+    AIControllerBase* AIcontroller = nullptr;
     EntityRenderingComponent* renderingComponent = nullptr;
 };

@@ -9,15 +9,15 @@ bool EnemyWave::CanBeSpawned(float difficulty)
     return true;
 }
 
-void EnemyWave::AddPoint(const Vector2D& point)
+void EnemyWave::AddEnemy(const std::string& type, const Vector2D& point)
 {
-    Locations.push_back(point);
+    spawnOrders.push_back(SpawnOrder{type, point});
 }
 
 void EnemyWave::Spawn(EnemyOwner* enemyOwner)
 {
-    for (auto& location : Locations)
+    for (auto& spawnOrder : spawnOrders)
     {
-        enemyOwner->Emplace(location, 25.f);
+        enemyOwner->RequestSpawn(spawnOrder);
     }
 }
