@@ -71,6 +71,8 @@
         "numbers": "cpp",
         "sstream": "cpp",
         "set": "cpp",
-        "cstdarg": "cpp"
+        "cstdarg": "cpp",
+        "codecvt": "cpp",
+        "iomanip": "cpp"
     }
 }

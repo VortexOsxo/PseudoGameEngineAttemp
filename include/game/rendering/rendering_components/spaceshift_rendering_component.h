@@ -4,6 +4,8 @@
 #include <vector>
 #include <Utils/Vector2D.h>
 
+#include <game/rendering/sprite.h>
+
 class Entity;
 
 class SpaceshiftRenderingComponent : public RenderingComponent
@@ -23,11 +25,7 @@ protected:
     Vector2D size;
 
 private:
-    sf::Texture textureShip;
-    sf::Sprite spriteShip;
+    Sprite spriteShip;
 
-    int frameEngine = 0;
-    int frameEngineNumber = 0;
-    std::vector<sf::Texture> textureEngine;
-    std::vector<sf::Sprite> spriteEngine;
+    Sprite spriteEngine;
 };

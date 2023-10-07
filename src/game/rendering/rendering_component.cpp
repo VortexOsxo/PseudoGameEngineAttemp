@@ -10,3 +10,7 @@ RenderingComponent::~RenderingComponent()
 {
    RenderingSystem::GetInstance()->RemoveRenderingComponent(this);
 }
+const Vector2D &RenderingComponent::GetRelativePosition()
+{
+   return renderingSystem->GetRelativePosition();
+}

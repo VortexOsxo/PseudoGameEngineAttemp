@@ -1,6 +1,7 @@
 #pragma once
 
 #include <game/rendering/rendering_component.h>
+#include <game/rendering/sprite.h>
 #include <vector>
 #include <Utils/Vector2D.h>
 
@@ -19,11 +20,5 @@ protected:
 
 protected:
     Projectile* projectile = nullptr;
-    Vector2D size;
-
-private:
-    int frame = 0;
-    int frameNumber = 0;
-    std::vector<sf::Texture> textures;
-    std::vector<sf::Sprite> sprites;
+    Sprite projectileSprite;
 };
