@@ -4,6 +4,7 @@
 
 #include <game/movement_component/base_movement_component.h>
 #include <game/rendering/rendering_components/spaceshift_rendering_component.h>
+#include <game/rendering/rendering_system.h>
 
 #include <game/ai/ai_controller_base.h>
 
@@ -34,6 +35,7 @@ void Enemy::TakeDamage(float damage)
     LivingEntity::TakeDamage(damage);
     if(LivingEntity::GetHealth() <= 0)
     {
+        RenderingSystem::GetInstance()->PlayAnimation("D:/Program/Games/SpaceFighter/assets/klaed/fighter/destruction", GetPosition());
         SetToDelete();
     }
 }

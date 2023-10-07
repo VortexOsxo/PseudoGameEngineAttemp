@@ -2,6 +2,7 @@
 #include <game/rendering/rendering_component.h>
 
 #include <Utils/Window.h>
+#include <algorithm>
 #include <iostream>
 
 RenderingSystem *RenderingSystem::GetInstance()
@@ -31,6 +32,12 @@ void RenderingSystem::Render()
     {
         renderComponent->Render(window);
     }
+    for (Animation& animation: animations)
+    {
+        animation.Render(window);
+    }
+    auto end = std::remove_if(animations.begin(), animations.end(), [] (Animation& a) { return a.IsOver(); });
+    animations.erase(end, animations.end());
 }
 
 const RenderingSystem* RenderingSystem::AddRenderingComponent(RenderingComponent* renderComponent)
@@ -60,6 +67,11 @@ void RenderingSystem::SetRelativePosition(const Vector2D &newRelativePosition)
 {
     relativePosition.x = (window->getSize().x/2.f - newRelativePosition[0]);
     relativePosition.y = (window->getSize().y/2.f - newRelativePosition[1]);
+}
+
+void RenderingSystem::PlayAnimation(const std::string &name, const Vector2D &position)
+{
+    animations.emplace(animations.end(), name, position);
 }
 
 RenderingSystem* RenderingSystem::Instance = nullptr;

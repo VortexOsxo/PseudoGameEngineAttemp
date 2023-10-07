@@ -12,7 +12,7 @@ void MapRenderingComponent::Render(sf::RenderWindow* window)
 {
     const float rayon = static_cast<float>(map->GetRayon());
 
-    Vector2D relativePosition = renderingSystem->GetRelativePosition();
+    Vector2D relativePosition = GetRelativePosition();
     circle.setPosition(relativePosition[0] - rayon, relativePosition[1] - rayon);
     circle.setRadius(rayon);
     circle.setFillColor(sf::Color::Transparent);

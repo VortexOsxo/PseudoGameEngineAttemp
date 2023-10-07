@@ -22,12 +22,12 @@ Sprite::Sprite(std::string name)
 
 void Sprite::SetPosition(const Vector2D &position)
 {
-    sprites[frame].setPosition(position.x, position.y);
+    sprites[frame/speed].setPosition(position.x, position.y);
 }
 
 void Sprite::SetRotation(float rotation)
 {
-    sprites[frame].setRotation(rotation);
+    sprites[frame/speed].setRotation(rotation);
 }
 
 void Sprite::SetPositionAll(const Vector2D &position)
@@ -48,7 +48,7 @@ void Sprite::SetRotationAll(float rotation)
 
 sf::Sprite& Sprite::GetDrawable()
 {
-    sf::Sprite& sprite = sprites[frame];
-    frame = (frame + 1) % frameNumber;
+    sf::Sprite& sprite = sprites[frame/speed];
+    frame = (frame + 1) % (frameNumber*speed);
     return sprite;
 }

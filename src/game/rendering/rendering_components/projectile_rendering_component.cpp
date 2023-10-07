@@ -23,6 +23,6 @@ void ProjectileRenderingComponent::Render(sf::RenderWindow* window)
 
 void ProjectileRenderingComponent::RenderProjectile(sf::RenderWindow* window)
 {
-    projectileSprite.SetPosition(renderingSystem->GetRelativePosition() + projectile->GetPosition());
+    projectileSprite.SetPosition(GetRelativePosition() + projectile->GetPosition());
     window->draw(projectileSprite.GetDrawable());
 }

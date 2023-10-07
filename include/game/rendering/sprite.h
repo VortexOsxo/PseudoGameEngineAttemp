@@ -22,6 +22,7 @@ public:
 
 private:
     Vector2D size;
+    int speed = 3;
     int frame = 0;
     int frameNumber = 0;
     std::vector<sf::Sprite> sprites;
