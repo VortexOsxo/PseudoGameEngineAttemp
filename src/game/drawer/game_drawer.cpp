@@ -16,8 +16,8 @@ GameDrawer::GameDrawer(sf::RenderWindow* inWindow)
 
 void GameDrawer::SetRelativePosition(const Vector2D& newRelativePosition)
 {
-    relativePosition.SetFirst(window->getSize().x/2.f - newRelativePosition[0]);
-    relativePosition.SetSecond(window->getSize().y/2.f - newRelativePosition[1]);
+    relativePosition.x = (window->getSize().x/2.f - newRelativePosition[0]);
+    relativePosition.y = (window->getSize().y/2.f - newRelativePosition[1]);
 }
 
 void GameDrawer::DrawEntity(Entity* entity)

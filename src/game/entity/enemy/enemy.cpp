@@ -3,7 +3,7 @@
 #include <game/entity/player.h>
 
 #include <game/movement_component/base_movement_component.h>
-#include <game/rendering/rendering_components/entity_rendering_component.h>
+#include <game/rendering/rendering_components/spaceshift_rendering_component.h>
 
 #include <game/ai/ai_controller_base.h>
 
@@ -16,7 +16,9 @@ Enemy::Enemy(Vector2D position, int rayon)
     : LivingEntity(position, rayon, BASE_HEALTH)
 {   
     movementComponent = new BaseMovementComponent(this, BASE_SPEED);
-    renderingComponent = new EntityRenderingComponent(this);
+    renderingComponent = new SpaceshiftRenderingComponent(this,
+                         "D:/Program/Games/SpaceFighter/assets/klaed/fighter/ship.png",
+                         "D:/Program/Games/SpaceFighter/assets/klaed/fighter/engine");
 }
 
 Enemy::~Enemy()

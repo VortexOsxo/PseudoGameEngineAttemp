@@ -17,7 +17,7 @@ Game::Game()
 
 void Game::SpawnPlayer()
 {
-    player = std::make_unique<Player>( Vector2D(0,0), 25);
+    player = std::make_unique<Player>( Vector2D(0,0), 20);
 }
 
 Game::~Game()
@@ -57,6 +57,8 @@ bool Game::HandleEventsImplementation(float time)
         direction += {1.f,0.f};
     }
     
+    player->SetOrientation(direction);
+
     Vector2D initialPos = player->GetPosition();
     player->GetMovementComponent()->Move(direction, time);
     if(!map->IsInside(player.get()))

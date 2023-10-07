@@ -8,7 +8,7 @@ EnemySpawner::EnemySpawner(EnemyOwner* InEnemyOwner)
     : enemyOwner(InEnemyOwner) 
 {
     e.AddEnemy("default", Vector2D(50.f, 50.f));
-    e.AddEnemy("rusher", Vector2D(75.f, 75.f));
+    // e.AddEnemy("rusher", Vector2D(75.f, 75.f));
 }
 
 void EnemySpawner::Tick(float time)

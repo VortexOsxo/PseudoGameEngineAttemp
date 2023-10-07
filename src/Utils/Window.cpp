@@ -5,7 +5,7 @@
 Window::Window()
 {
     renderWindow = new sf::RenderWindow(sf::VideoMode::getFullscreenModes()[0], "Space Fighter", sf::Style::Fullscreen);
-    renderWindow->setFramerateLimit(1200.f);
+    renderWindow->setFramerateLimit(60.f);
 }
 
 Window::~Window() 

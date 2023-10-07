@@ -6,7 +6,7 @@
 #include <game/combat/targeting_type.h>
 
 class BaseMovementComponent;
-class EntityRenderingComponent;
+class ProjectileRenderingComponent;
 
 class Projectile : public Entity, public Ownee
 {
@@ -26,8 +26,7 @@ private:
     TargetingType target;
 
     BaseMovementComponent* MovementComponent =nullptr;
-    EntityRenderingComponent* renderingComponent = nullptr; 
+    ProjectileRenderingComponent* renderingComponent = nullptr; 
 
-    Vector2D Direction;
     float damage;
 };

@@ -25,6 +25,7 @@ void AIControllerDefault::Tick(float time)
     Vector2D thisPos(enemy->GetPosition()[0], enemy->GetPosition()[1]);
 
     Vector2D direction = playerPos - thisPos;
+    enemy->SetOrientation(direction);
     float distance = direction.Length();
 
     if (distance < 400.f)

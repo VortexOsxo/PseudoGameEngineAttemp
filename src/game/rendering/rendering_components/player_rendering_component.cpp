@@ -3,20 +3,17 @@
 #include <game/rendering/rendering_system.h>
 #include <game/entity/player.h>
 
-PlayerRenderingComponent::PlayerRenderingComponent(Player* player)
-    : player(player) {}
+PlayerRenderingComponent::PlayerRenderingComponent(Entity* player)
+    : SpaceshiftRenderingComponent(player, "D:/Program/Games/SpaceFighter/assets/player/ship.png",
+                                           "D:/Program/Games/SpaceFighter/assets/player/engine/") 
+{}
 
 void PlayerRenderingComponent::Render(sf::RenderWindow* window)
 {
-    Vector2D pos = player->GetPosition();
-    const float rayon = static_cast<float>(player->GetRayon());
+    RenderSpaceshift(window);
 
-    Vector2D relativePosition = renderingSystem->GetRelativePosition();
-
-    circle.setPosition(relativePosition[0] + pos[0] - rayon, relativePosition[1] + pos[1] - rayon);
-    circle.setRadius(rayon);
-    circle.setFillColor(sf::Color::Blue);
-    window->draw(circle);
+    /// Render Health Bar
+    Player* player = dynamic_cast<Player*>(entity);
 
     sf::Vector2f barPosition(window->getSize().x - 160, window->getSize().y - 40);
     sf::Vector2f barSize(150, 20);
