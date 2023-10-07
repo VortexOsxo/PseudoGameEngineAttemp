@@ -14,4 +14,5 @@ public:
 private:
     std::vector<sf::Texture> textures;
 
+    static std::string ressourcePath;
 };

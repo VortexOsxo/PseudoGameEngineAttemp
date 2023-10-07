@@ -13,13 +13,11 @@
 const int BASE_HEALTH = 100;
 const float BASE_SPEED = 0.1f;
 
-Enemy::Enemy(Vector2D position, int rayon) 
+Enemy::Enemy(const Vector2D& position, int rayon, const std::string& path) 
     : LivingEntity(position, rayon, BASE_HEALTH)
 {   
     movementComponent = new BaseMovementComponent(this, BASE_SPEED);
-    renderingComponent = new SpaceshiftRenderingComponent(this,
-                         "D:/Program/Games/SpaceFighter/assets/klaed/fighter/ship.png",
-                         "D:/Program/Games/SpaceFighter/assets/klaed/fighter/engine");
+    renderingComponent = new SpaceshiftRenderingComponent(this, path + "/ship.png", path + "/engine");
 }
 
 Enemy::~Enemy()
@@ -34,10 +32,13 @@ void Enemy::TakeDamage(float damage)
 {
     LivingEntity::TakeDamage(damage);
     if(LivingEntity::GetHealth() <= 0)
-    {
-        RenderingSystem::GetInstance()->PlayAnimation("D:/Program/Games/SpaceFighter/assets/klaed/fighter/destruction", GetPosition());
-        SetToDelete();
-    }
+        Kill();
+}
+
+void Enemy::Kill()
+{
+    RenderingSystem::GetInstance()->PlayAnimation("klaed/fighter/destruction", GetPosition());
+    SetToDelete();
 }
 
 void Enemy::SetFightingComponent(FightingComponent *inFightingComponent)

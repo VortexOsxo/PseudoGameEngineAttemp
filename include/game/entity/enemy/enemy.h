@@ -11,10 +11,11 @@ class SpaceshiftRenderingComponent;
 class Enemy : public LivingEntity, public Ownee
 {
 public:
-    Enemy(Vector2D inPosition, int inRayon);
+    Enemy(const Vector2D& position, int rayon, const std::string& path);
     virtual ~Enemy();
 
     virtual void TakeDamage(float damage) override;
+    virtual void Kill();
 
     void SetFightingComponent(FightingComponent* inFightingComponent);
     void SetAIController(AIControllerBase* AIController);

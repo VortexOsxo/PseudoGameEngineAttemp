@@ -13,6 +13,7 @@ def resize_image(input_path, new_width, new_height):
         print(f"Error: {e}")
 
 if __name__ == "__main__":
-    input_path = "torpedo.png"  
+    for i in range(8):
+        input_path = f"{i}.png"  
 
-    resize_image(input_path, 66, 64)
+        resize_image(input_path, 128, 128)

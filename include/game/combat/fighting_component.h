@@ -14,8 +14,12 @@ public:
     virtual ~FightingComponent();
 
     void SetupWeapon(WeaponBase* weapon);
+    void SetupAbility(Ability* ability);
+
+    void UseAbility();
     void WeaponAttack();
 
 private:    
     WeaponBase* weapon = nullptr;
+    Ability* ability = nullptr;
 };

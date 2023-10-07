@@ -16,7 +16,7 @@ Projectile::Projectile(Vector2D InPosition, int InRayon, Vector2D InDirection, T
 {
     SetOrientation(InDirection);
     MovementComponent = new BaseMovementComponent(this, BASE_SPEED);
-    renderingComponent = new ProjectileRenderingComponent(this, "D:/Program/Games/SpaceFighter/assets/klaed/projectiles/torpedo");
+    renderingComponent = new ProjectileRenderingComponent(this, "klaed/projectiles/torpedo");
 }
 
 Projectile::~Projectile()

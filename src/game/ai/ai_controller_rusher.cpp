@@ -40,6 +40,7 @@ void AIControllerRusher::Tick(float time)
 
     else 
     {
-        enemy->GetFightingComponent()->WeaponAttack();
+        enemy->GetFightingComponent()->UseAbility();
+        enemy->Kill();
     }
 }

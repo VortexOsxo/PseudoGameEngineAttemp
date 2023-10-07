@@ -4,8 +4,8 @@
 #include <game/entity/player.h>
 
 PlayerRenderingComponent::PlayerRenderingComponent(Entity* player)
-    : SpaceshiftRenderingComponent(player, "D:/Program/Games/SpaceFighter/assets/player/ship.png",
-                                           "D:/Program/Games/SpaceFighter/assets/player/engine/") 
+    : SpaceshiftRenderingComponent(player, "player/ship.png",
+                                           "player/engine/") 
 {}
 
 void PlayerRenderingComponent::Render(sf::RenderWindow* window)
