@@ -14,8 +14,7 @@ public:
     Enemy(const Vector2D& position, int rayon, const std::string& path);
     virtual ~Enemy();
 
-    virtual void TakeDamage(float damage) override;
-    virtual void Kill();
+    virtual void Kill() override;
 
     void SetFightingComponent(FightingComponent* inFightingComponent);
     void SetAIController(AIControllerBase* AIController);

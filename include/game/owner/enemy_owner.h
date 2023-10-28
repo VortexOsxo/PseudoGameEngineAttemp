@@ -10,6 +10,7 @@ public:
     
     virtual void Tick(float time);
 
+    Enemy* FindClosestEnemy(const Vector2D& position) const;
     void RequestSpawn(const class SpawnOrder& spawnOrder);
 
 private:

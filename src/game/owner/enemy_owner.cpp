@@ -25,8 +25,24 @@ void EnemyOwner::Tick(float time)
     CleanUp();
 }
 
+Enemy* EnemyOwner::FindClosestEnemy(const Vector2D& position) const
+{
+    float min = 1000000.f;
+    Enemy* closest = nullptr;
+    float distance;
+    for (auto& Ownee : Ownees)
+    {
+        distance = (Ownee->GetPosition()-position).Length();
+        if (distance < min) 
+        {
+            min = distance;
+            closest = Ownee.get();
+        }
+    }
+    return closest;
+}
+
 void EnemyOwner::RequestSpawn(const SpawnOrder& spawnOrder) 
 {
-    
     Ownees.emplace_back(std::move(enemyBuildDirector->RequestEnemy(spawnOrder)));
 }

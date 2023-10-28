@@ -80,6 +80,16 @@ bool Game::HandleEventIntern(float time, const sf::Event &event)
             player->Attack();
         }
     }
+    else if (event.type == sf::Event::MouseButtonPressed)
+    {
+        if (event.mouseButton.button == sf::Mouse::Left)
+        {
+            player->GetFightingComponent();
+            sf::Vector2i position = sf::Mouse::getPosition();
+            std::cout << "Clicked: " << position.x << " " << position.y << std::endl;
+        }
+        
+    }
     return true;
 }
 

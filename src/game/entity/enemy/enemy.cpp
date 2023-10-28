@@ -28,13 +28,6 @@ Enemy::~Enemy()
     delete renderingComponent;
 }
 
-void Enemy::TakeDamage(float damage)
-{
-    LivingEntity::TakeDamage(damage);
-    if(LivingEntity::GetHealth() <= 0)
-        Kill();
-}
-
 void Enemy::Kill()
 {
     RenderingSystem::GetInstance()->PlayAnimation("klaed/fighter/destruction", GetPosition());

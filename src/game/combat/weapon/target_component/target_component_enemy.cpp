@@ -2,6 +2,7 @@
 
 #include <game/owner/enemy_owner.h>
 #include <Utils/Vector2D.h>
+#include <iostream>
 
 TargetComponentEnemy::TargetComponentEnemy(const Vector2D& inFirePoint, const EnemyOwner& enemyOwner)
     : TargetComponentBase(inFirePoint), enemyOwner(enemyOwner)
@@ -9,10 +10,25 @@ TargetComponentEnemy::TargetComponentEnemy(const Vector2D& inFirePoint, const En
 
 Vector2D TargetComponentEnemy::GetDirection() const 
 {
-    if (enemyOwner.GetOwnees().size() > 0)
-    {
-        Enemy* enemy = enemyOwner.GetOwnees()[0].get();
-        return enemy->GetPosition() - GetFirePoint();
+    if (targettedEnemy == nullptr)
+        FindTarget();
+        
+    if(targettedEnemy == nullptr) 
+        return { 1.f, 1.f };
+    
+    return targettedEnemy->GetPosition() - GetFirePoint();       
+}
+
+void TargetComponentEnemy::ReceiveNotification() const
+{
+    auto* idk = const_cast<TargetComponentEnemy*>(this); 
+    idk->targettedEnemy = nullptr;
+}
+
+void TargetComponentEnemy::FindTarget() const {
+    auto* idk = const_cast<TargetComponentEnemy*>(this); 
+    idk->targettedEnemy = enemyOwner.FindClosestEnemy(GetFirePoint());
+    if(targettedEnemy != nullptr) {
+        idk->SubscribeTo(targettedEnemy);
     }
-    return { 1.f, 1.f };
 }
