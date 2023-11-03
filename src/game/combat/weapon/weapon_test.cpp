@@ -8,18 +8,15 @@
 
 #include <game/combat/weapon/target_component/target_component_base.h>
 
-WeaponTest::WeaponTest() 
-    : WeaponBase(*(Game::GetInstance()->GetProjectileOwner()))
+WeaponTest::WeaponTest(FightingComponent* inFightingComponent, TargetingType inProjectileTarget) 
+    : WeaponBase(*(Game::GetInstance()->GetProjectileOwner()), inFightingComponent, inProjectileTarget)
 {
-}
-
-WeaponTest::~WeaponTest()
-{
-    delete targetComponent;
 }
 
 void WeaponTest::Use()
 {
+    const TargetComponentBase* targetComponent = fightingComponent->GetTargetComponent();
+
     if (cooldown.Available())
     {
         ProjectileOwner.Emplace(targetComponent->GetFirePoint(), 5.0f, targetComponent->GetDirection(), projectileTarget);

@@ -84,9 +84,11 @@ bool Game::HandleEventIntern(float time, const sf::Event &event)
     {
         if (event.mouseButton.button == sf::Mouse::Left)
         {
-            player->GetFightingComponent();
-            sf::Vector2i position = sf::Mouse::getPosition();
-            std::cout << "Clicked: " << position.x << " " << position.y << std::endl;
+            const Vector2D& relative_position = RenderingSystem::GetInstance()->GetRelativePosition();
+
+            sf::Vector2i click_position = sf::Mouse::getPosition();
+            
+            player->GetFightingComponent()->UpdateTarget( {click_position.x - relative_position.x, click_position.y - relative_position.y} );
         }
         
     }

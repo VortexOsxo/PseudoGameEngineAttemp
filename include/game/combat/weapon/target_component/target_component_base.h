@@ -10,6 +10,8 @@ public:
 
     Vector2D GetFirePoint() const;
 
+    virtual void UpdateTarget(const Vector2D& location) {};
+
     virtual Vector2D GetDirection() const =0;
 
 private:

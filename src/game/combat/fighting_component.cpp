@@ -4,20 +4,29 @@
 #include <game/combat/ability/ability.h>
 
 #include <game/entity/entity.h>
+#include <game/combat/weapon/target_component/target_component_base.h>
 
 #include <iostream>
 
-FightingComponent::FightingComponent()
-{
-
-}
+FightingComponent::FightingComponent(TargetComponentBase* targetComponentIn)
+: targetComponent(targetComponentIn) {}
 
 FightingComponent::~FightingComponent()
 {
+    delete targetComponent;
     if (weapon != nullptr)
     {
         delete weapon;
     }
+    if (ability != nullptr)
+    {
+        delete ability;
+    }
+}
+
+void FightingComponent::UpdateTarget(const Vector2D& location) 
+{
+    targetComponent->UpdateTarget(location);
 }
 
 void FightingComponent::SetupWeapon(WeaponBase* inWeapon)

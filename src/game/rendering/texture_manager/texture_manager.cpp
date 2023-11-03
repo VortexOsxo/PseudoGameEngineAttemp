@@ -30,7 +30,7 @@ void TextureManager::DeleteInstance()
 const std::vector<sf::Texture>& TextureManager::FindTexture(std::string textureKey)
 {
     if (textures.find(textureKey) == textures.end()) {
-        std::cout << "loaded: " << textureKey << std::endl;
+        // std::cout << "loaded: " << textureKey << std::endl;
         return LoadTexture(textureKey).GetTextures();
     }
     return textures.find(textureKey)->second.GetTextures();

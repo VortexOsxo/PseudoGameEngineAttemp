@@ -8,6 +8,11 @@ TargetComponentEnemy::TargetComponentEnemy(const Vector2D& inFirePoint, const En
     : TargetComponentBase(inFirePoint), enemyOwner(enemyOwner)
     {}
 
+void TargetComponentEnemy::UpdateTarget(const Vector2D& location) 
+{
+    FindTarget(location);
+}
+
 Vector2D TargetComponentEnemy::GetDirection() const 
 {
     if (targettedEnemy == nullptr)
@@ -26,8 +31,12 @@ void TargetComponentEnemy::ReceiveNotification() const
 }
 
 void TargetComponentEnemy::FindTarget() const {
+    FindTarget(GetFirePoint());
+}
+
+void TargetComponentEnemy::FindTarget(const Vector2D& location) const {
     auto* idk = const_cast<TargetComponentEnemy*>(this); 
-    idk->targettedEnemy = enemyOwner.FindClosestEnemy(GetFirePoint());
+    idk->targettedEnemy = enemyOwner.FindClosestEnemy(location);
     if(targettedEnemy != nullptr) {
         idk->SubscribeTo(targettedEnemy);
     }

@@ -10,11 +10,15 @@ public:
     TargetComponentEnemy(const Vector2D& inFirePoint, const EnemyOwner& enemyOwner);
     virtual ~TargetComponentEnemy() = default;
 
+    virtual void UpdateTarget(const Vector2D& location) override;
+
     virtual Vector2D GetDirection() const override;
 
     virtual void ReceiveNotification() const override;
+
 private:
     void FindTarget() const;
+    void FindTarget(const Vector2D& location) const;
 
 private:
     LivingEntity* targettedEnemy = nullptr;

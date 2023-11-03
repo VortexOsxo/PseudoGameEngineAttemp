@@ -3,15 +3,18 @@
 class Ability;
 class WeaponBase;
 
-class Vector2D;
 class Entity;
 enum class TargetingType;
+class TargetComponentBase;
 
 class FightingComponent
 {
 public:
-    FightingComponent();
+    FightingComponent(TargetComponentBase* targetComponentIn);
     virtual ~FightingComponent();
+
+    const TargetComponentBase* GetTargetComponent() { return targetComponent; }
+    void UpdateTarget(const class Vector2D& location);
 
     void SetupWeapon(WeaponBase* weapon);
     void SetupAbility(Ability* ability);
@@ -19,7 +22,9 @@ public:
     void UseAbility();
     void WeaponAttack();
 
-private:    
+private:
+    TargetComponentBase* targetComponent = nullptr;
+
     WeaponBase* weapon = nullptr;
     Ability* ability = nullptr;
 };

@@ -3,14 +3,15 @@
 #include <game/combat/targeting_type.h>
 
 class ProjectileOwner;
-class TargetComponentBase;
+class FightingComponent;
 
 class WeaponBase
 {
 friend class WeaponBuilder;
 public:
-    WeaponBase(ProjectileOwner& ProjectileOwner) 
-        : projectileTarget(TargetingType::Player), ProjectileOwner(ProjectileOwner) {}
+    WeaponBase(ProjectileOwner& ProjectileOwner, FightingComponent* inFightingComponent, TargetingType inProjectileTarget = TargetingType::Player) 
+        : projectileTarget(inProjectileTarget), ProjectileOwner(ProjectileOwner),
+          fightingComponent(inFightingComponent) {}
 
     virtual ~WeaponBase() = default;
 
@@ -20,5 +21,5 @@ protected:
     ProjectileOwner& ProjectileOwner;
     
     TargetingType projectileTarget;
-    TargetComponentBase* targetComponent = nullptr;
+    FightingComponent* fightingComponent = nullptr;
 };

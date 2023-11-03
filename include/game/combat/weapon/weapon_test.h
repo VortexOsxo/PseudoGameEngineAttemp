@@ -6,8 +6,8 @@
 class WeaponTest : public WeaponBase
 {
 public:
-    WeaponTest();
-    virtual ~WeaponTest();
+    WeaponTest(FightingComponent* inFightingComponent, TargetingType inProjectileTarget = TargetingType::Player);
+    virtual ~WeaponTest() = default;
 
     virtual void Use() override;
 
