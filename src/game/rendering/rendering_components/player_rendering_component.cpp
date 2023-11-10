@@ -11,6 +11,10 @@ PlayerRenderingComponent::PlayerRenderingComponent(Entity* player)
 void PlayerRenderingComponent::Render(sf::RenderWindow* window)
 {
     RenderSpaceshift(window);
+    
+    #ifdef DEBUG
+    RenderHitbox(window);
+    #endif
 
     /// Render Health Bar
     Player* player = dynamic_cast<Player*>(entity);

@@ -4,8 +4,8 @@
 #include <algorithm>
 #include <iostream>
 
-LivingEntity::LivingEntity(Vector2D position, int rayon, float inHealth)
-    : Entity(position, rayon), health(inHealth), maxHealth(inHealth)
+LivingEntity::LivingEntity(Vector2D position, int rayon, std::vector<Vector2D>&& points, float inHealth)
+    : Entity(position, rayon, std::move(points)), health(inHealth), maxHealth(inHealth)
 {
 }
 
@@ -22,14 +22,13 @@ void LivingEntity::TakeDamage(float damage)
 {
     health -= damage;
     if (health > 0) return;
-
-    NotifyObservers();
+    
     Kill();
 }
 
 void LivingEntity::Kill()
 {
-
+    NotifyObservers();
 }
 
 void LivingEntity::AddObserver(const LivingEntityObserver* observer)

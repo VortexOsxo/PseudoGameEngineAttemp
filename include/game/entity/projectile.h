@@ -11,7 +11,7 @@ class ProjectileRenderingComponent;
 class Projectile : public Entity, public Ownee
 {
 public:
-    Projectile(Vector2D InPosition, int InRayon, Vector2D InDirection, TargetingType inTargetType = TargetingType::Player);
+    Projectile(Vector2D InPosition, int InRayon, std::vector<Vector2D>&& points, Vector2D InDirection, TargetingType inTargetType = TargetingType::Player);
     virtual ~Projectile();
 
     void Tick(float Time);

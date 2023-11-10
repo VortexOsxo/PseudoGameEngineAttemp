@@ -9,10 +9,9 @@
 ProjectileRenderingComponent::ProjectileRenderingComponent(Projectile* projectile, std::string path)
     : projectile(projectile), projectileSprite(path)
 {
-    Vector2D def = Vector2D(0.f,-1.f);
     Vector2D orientation = projectile->GetOrientation();
-    float angle = orientation.x >= 0 ? def.angleDegree(orientation) : 360.f - def.angleDegree(orientation);
-
+    float angle = orientation.getAngleDegree();
+    
     projectileSprite.SetRotationAll(angle);
 }
 

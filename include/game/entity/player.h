@@ -11,7 +11,7 @@
 class Player: public LivingEntity
 {
 public:
-    Player(Vector2D position, int rayon);
+    Player(Vector2D position, int rayon, std::vector<Vector2D>&& points);
     virtual ~Player();
 
     void Attack();

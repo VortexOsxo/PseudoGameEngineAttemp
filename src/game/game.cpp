@@ -17,7 +17,12 @@ Game::Game()
 
 void Game::SpawnPlayer()
 {
-    player = std::make_unique<Player>( Vector2D(0,0), 20);
+    std::vector<Vector2D> points = {
+        Vector2D(35,25),
+        Vector2D(0,-25),
+        Vector2D(-35,25)
+    };
+    player = std::make_unique<Player>( Vector2D(0,0), 20, std::move(points));
 }
 
 Game::~Game()

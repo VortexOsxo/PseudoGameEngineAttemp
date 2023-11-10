@@ -11,8 +11,8 @@
 const float BASE_SPEED = .5f;
 const float BASE_DAMAGE = 20.f;
 
-Projectile::Projectile(Vector2D InPosition, int InRayon, Vector2D InDirection, TargetingType inTargetType)
-    : Entity(InPosition, InRayon), target(inTargetType), damage(BASE_DAMAGE)
+Projectile::Projectile(Vector2D InPosition, int InRayon, std::vector<Vector2D>&& points, Vector2D InDirection, TargetingType inTargetType)
+    : Entity(InPosition, InRayon, std::move(points)), target(inTargetType), damage(BASE_DAMAGE)
 {
     SetOrientation(InDirection);
     MovementComponent = new BaseMovementComponent(this, BASE_SPEED);

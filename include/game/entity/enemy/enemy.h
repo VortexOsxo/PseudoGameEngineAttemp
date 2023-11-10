@@ -11,7 +11,7 @@ class SpaceshiftRenderingComponent;
 class Enemy : public LivingEntity, public Ownee
 {
 public:
-    Enemy(const Vector2D& position, int rayon, const std::string& path);
+    Enemy(const Vector2D& position, int rayon, std::vector<Vector2D>&& points, const std::string& path);
     virtual ~Enemy();
 
     virtual void Kill() override;

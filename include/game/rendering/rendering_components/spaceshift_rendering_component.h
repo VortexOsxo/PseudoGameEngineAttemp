@@ -18,6 +18,9 @@ public:
 
 protected:
     void RenderSpaceshift(sf::RenderWindow* window);
+    #ifdef DEBUG
+    void RenderHitbox(sf::RenderWindow* window);
+    #endif
     void OrientSprite();
 
 protected:

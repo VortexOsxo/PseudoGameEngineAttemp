@@ -7,16 +7,15 @@
 #include <game/movement_component/dash_movement_component.h>
 #include <game/combat/weapon/target_component/target_component_enemy.h>
 
-const float BASE_HEALTH = 10000.f;
+const float BASE_HEALTH = 100.f;
 const float BASE_SPEED = 0.1f;
 
 const float DASH_CD = 0.5f;
 const float DASH_TIME = 0.150f;
 const float DASH_BONUS_SPEED = 0.5f;
 
-
-Player::Player(Vector2D position, int rayon) 
-    : LivingEntity(position, rayon, BASE_HEALTH)
+Player::Player(Vector2D position, int rayon, std::vector<Vector2D>&& points) 
+    : LivingEntity(position, rayon, std::move(points), BASE_HEALTH)
 {   
     movementComponent = std::make_unique<DashMovementComponent>(this, BASE_SPEED, DASH_CD, DASH_TIME, DASH_BONUS_SPEED);
     fightingComponent = std::make_unique<FightingComponent>(new TargetComponentEnemy(GetPosition(), *(Game::GetInstance()->GetEnemyOwner())));

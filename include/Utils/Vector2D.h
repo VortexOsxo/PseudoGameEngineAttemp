@@ -22,11 +22,16 @@ public:
     float operator[](int index) const;
 
     void normalize(float length = 1.f);
+    void rotate(float angle);
 
     float Length() const; 
 
     float dotProduct(const Vector2D& other) const;
-    float angleDegree(const Vector2D& other) const;
+    float angleRadianWith(const Vector2D& other) const;
+    float angleDegreeWith(const Vector2D& other) const;
+    float getAngleRadian() const;
+    float getAngleDegree() const;
+
 
     inline float GetFirst() const { return x; }
     inline float GetSecond() const { return y; }
@@ -44,4 +49,6 @@ private:
 
 public:
     static Vector2D ZeroVector;
+    static Vector2D VectorI;
+    static Vector2D VectorJ;
 };

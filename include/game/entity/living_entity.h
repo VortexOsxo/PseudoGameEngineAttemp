@@ -10,7 +10,7 @@ class LivingEntity : public Entity
 friend LivingEntityObserver;
 
 public:
-    LivingEntity(Vector2D position, int rayon, float health);
+    LivingEntity(Vector2D position, int rayon, std::vector<Vector2D>&& points, float health);
     virtual ~LivingEntity();
 
     virtual void TakeDamage(float damage);

@@ -17,9 +17,16 @@ void WeaponTest::Use()
 {
     const TargetComponentBase* targetComponent = fightingComponent->GetTargetComponent();
 
+    std::vector<Vector2D> points {
+        Vector2D(25,25),
+        Vector2D(-25,25),
+        Vector2D(-25,-25),
+        Vector2D(25,-25)
+    };
+
     if (cooldown.Available())
     {
-        ProjectileOwner.Emplace(targetComponent->GetFirePoint(), 5.0f, targetComponent->GetDirection(), projectileTarget);
+        ProjectileOwner.Emplace(targetComponent->GetFirePoint(), 5.0f, std::move(points), targetComponent->GetDirection(), projectileTarget);
         cooldown.Reset();
     }
 }

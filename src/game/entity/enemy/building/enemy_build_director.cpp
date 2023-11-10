@@ -20,7 +20,13 @@ std::unique_ptr<Enemy> EnemyBuildDirector::RequestEnemy(const SpawnOrder& spawnO
 {
     std::unique_ptr<Enemy> e;
     if (spawnOrder.type == "default") {
-        e = std::make_unique<Enemy>(spawnOrder.location, 25.f, "klaed/fighter");
+        std::vector points = {
+            Vector2D(25,20),
+            Vector2D(-25,20),
+            Vector2D(-25,-20),
+            Vector2D(25,-20)
+        };
+        e = std::make_unique<Enemy>(spawnOrder.location, 25.f, std::move(points), "klaed/fighter");
 
         FightingComponent* fightingComponent = new FightingComponent( new TargetComponentLockCible(e->GetPosition(), Game::GetInstance()->GetPlayer()->GetPosition()) );
 
@@ -33,7 +39,13 @@ std::unique_ptr<Enemy> EnemyBuildDirector::RequestEnemy(const SpawnOrder& spawnO
         e->SetAIController(AIController);
         
     } else if (spawnOrder.type == "rusher") {
-        e = std::make_unique<Enemy>(spawnOrder.location, 25.f, "klaed/scout");
+        std::vector points = {
+            Vector2D(22,20),
+            Vector2D(22,-15),
+            Vector2D(-22,-15),
+            Vector2D(-22,20)
+        };
+        e = std::make_unique<Enemy>(spawnOrder.location, 25.f, std::move(points), "klaed/scout");
 
         FightingComponent* fightingComponent = new FightingComponent( new TargetComponentLockCible(e->GetPosition(), Game::GetInstance()->GetPlayer()->GetPosition()) );
         fightingComponent->SetupAbility(new AbilityTest(e->GetPosition()));

@@ -1,9 +1,10 @@
 #include "game/entity/entity.h"
 
-#include<cmath>
+#include <cmath>
+#include <iostream>
 
-Entity::Entity(Vector2D InPosition, int InRayon)
-    : Position(InPosition), Rayon(InRayon)
+Entity::Entity(Vector2D InPosition, int InRayon, std::vector<Vector2D>&& points)
+    : Position(InPosition), Rayon(InRayon), points(std::move(points))
 {
 }
 
@@ -38,4 +39,17 @@ bool Entity::Collide(const Entity& Other) {
     float ReachSq = std::pow((Rayon + Other.Rayon), 2.f);
 
     return DistanceSq < ReachSq;
+}
+const std::vector<Vector2D> Entity::GetPoints()
+{
+    std::vector<Vector2D> rotatedPoints;
+
+    float angle = orientation.getAngleRadian(); 
+
+    for (Vector2D point : points)
+    {
+        point.rotate(angle);
+        rotatedPoints.push_back(point);
+    }
+    return rotatedPoints;
 }

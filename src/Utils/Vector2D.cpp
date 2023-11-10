@@ -74,6 +74,13 @@ void Vector2D::normalize(float length)
     lengthSq = length;
 }
 
+void Vector2D::rotate(float angle)
+{
+    float tx = x; float ty = y;
+    x = tx * cos(angle) - ty * sin(angle);
+    y = tx * sin(angle) + ty * cos(angle);
+}
+
 float Vector2D::Length() const
 {
     return std::pow(lengthSq, 0.5f);
@@ -84,10 +91,27 @@ float Vector2D::dotProduct(const Vector2D& other) const
     return x * other.x + y * other.y;
 }
 
-float Vector2D::angleDegree(const Vector2D& other) const
+float Vector2D::angleRadianWith(const Vector2D& other) const
 {
     float k = dotProduct(other) / (Length() * other.Length());
-    return std::acos(k) * 180.f / M_PI;
+    return std::acos(k);
+}
+
+float Vector2D::angleDegreeWith(const Vector2D& other) const
+{
+    return angleRadianWith(other) * 180.f / M_PI;
+}
+
+float Vector2D::getAngleRadian() const
+{
+    float angle = VectorJ.angleRadianWith(*this);
+    return x >= 0 ? angle : 2*M_PI - angle;
+}
+
+float Vector2D::getAngleDegree() const
+{
+    float angle = VectorJ.angleDegreeWith(*this);
+    return x >= 0 ? angle : 360.f - angle;
 }
 
 void Vector2D::updateLengthSq()
@@ -102,3 +126,5 @@ std::ostream &operator<<(std::ostream &os, const Vector2D &vector)
 }
 
 Vector2D Vector2D::ZeroVector = Vector2D(0.f,0.f);
+Vector2D Vector2D::VectorI = Vector2D(1.f,0.f);
+Vector2D Vector2D::VectorJ = Vector2D(0.f,-1.f);
