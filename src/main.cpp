@@ -20,8 +20,10 @@ int main() {
         bIsRunning &= context->HandleEvents(elapsedTime);
         bIsRunning &= context->Update(elapsedTime);
         
-        // float fps = 1.0f / (elapsedTime * 0.001f);
-        // std::cout << fps << std::endl;
+        #ifdef FPS
+        float fps = 1.0f / (elapsedTime * 0.001f);
+        std::cout << fps << std::endl;
+        #endif
     }
     delete context;
 
